@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
   <title>ADULLAM — Projection Financière 2025–2029</title>
 
   <!-- Bootstrap 5 -->
@@ -29,7 +29,12 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 72px;
+      overflow-x: hidden;
+      width: 100%;
+    }
 
     body {
       background: var(--bg-dark);
@@ -38,6 +43,9 @@
       font-size: 15px;
       line-height: 1.7;
       overflow-x: hidden;
+      width: 100%;
+      max-width: 100vw;
+      -webkit-text-size-adjust: 100%;
     }
 
     /* ── NOISE OVERLAY ── */
@@ -669,8 +677,105 @@
 
     /* ── Orb : réduire sur tous les petits écrans ── */
     @media (max-width: 767px) {
-      .orb-1 { width: 300px; height: 300px; opacity: .3; }
-      .orb-2 { width: 220px; height: 220px; opacity: .3; }
+      .orb-1 { width: 220px; height: 220px; opacity: .25; }
+      .orb-2 { width: 160px; height: 160px; opacity: .25; }
+    }
+
+    /* ══════════════════════════════════════
+       ANTI-OVERFLOW — empêche tout débordement
+    ══════════════════════════════════════ */
+
+    /* Tous les conteneurs principaux */
+    .container, section, nav, footer,
+    .glass-card, .calc-box, .chart-card,
+    .partner-card, .insight-card, .merch-cat-card,
+    .year-detail-card, .kpi-strip, .proj-table-wrap {
+      max-width: 100%;
+    }
+
+    /* Images */
+    img { max-width: 100%; height: auto; }
+
+    @media (max-width: 575px) {
+
+      /* Forcer toutes les images/canvas à rester dans l'écran */
+      canvas { width: 100% !important; }
+
+      /* Hero : empêcher le titre de déborder */
+      .hero h1 {
+        font-size: clamp(1.7rem, 8vw, 2.4rem);
+        letter-spacing: -.5px;
+        word-break: break-word;
+      }
+
+      /* Badge hero : retour à la ligne si besoin */
+      .hero-badge { white-space: normal; text-align: center; justify-content: center; }
+
+      /* Boutons hero : pleine largeur */
+      .btn-hero, .btn-outline-hero {
+        display: block; width: 100%;
+        text-align: center; padding: 13px 16px;
+      }
+
+      /* KPI 732M — empêcher overflow */
+      .kpi-value { font-size: 1.4rem; word-break: break-all; }
+      .kpi-strip .kpi-item { padding: 14px 16px; }
+
+      /* Formules de calcul */
+      .calc-formula {
+        flex-direction: column; align-items: flex-start;
+        font-size: .88rem; gap: 5px;
+      }
+      .calc-result { font-size: .85rem; }
+
+      /* Sections : padding horizontal minimal */
+      .container { padding-left: 14px !important; padding-right: 14px !important; }
+
+      /* Tableaux : min-width réduit + scroll interne */
+      .proj-table { min-width: 420px; }
+      .hyp-table  { min-width: 380px; }
+      #marchands .proj-table-wrap table { min-width: 560px; }
+
+      /* Texte dans les cellules */
+      .proj-table td, .hyp-table td { font-size: .75rem; padding: 10px 10px; }
+      .proj-table th, .hyp-table th { font-size: .68rem; padding: 10px 10px; }
+
+      /* Cards année detail */
+      .year-detail-card { width: 100%; }
+      .calc-row { flex-wrap: wrap; gap: 4px; }
+      .calc-row-value { font-size: .82rem; }
+
+      /* Section title */
+      .section-title { font-size: clamp(1.3rem, 5.5vw, 1.8rem); word-break: break-word; }
+
+      /* Partner card : texte ne déborde pas */
+      .partner-volume { font-size: 1.2rem; }
+
+      /* Chart card */
+      .chart-card { padding: 16px 12px; }
+
+      /* Merchant cat cards : 1 col pleine largeur */
+      #merch-cats > div { flex: 0 0 100% !important; max-width: 100% !important; }
+
+      /* Model glass card */
+      .model-line h6 { font-size: .85rem; }
+      .model-line p  { font-size: .78rem; }
+
+      /* Levers grid */
+      #levers-grid > div { flex: 0 0 100%; max-width: 100%; }
+
+      /* Note commission partenaires */
+      #partenaires .glass-card { padding: 18px 14px !important; }
+
+      /* Delta badge */
+      .delta-badge { font-size: .65rem; }
+    }
+
+    @media (min-width: 576px) and (max-width: 767px) {
+      .container { padding-left: 18px !important; padding-right: 18px !important; }
+      .hero h1 { font-size: clamp(1.9rem, 6vw, 2.8rem); letter-spacing: -.5px; }
+      .proj-table { min-width: 460px; }
+      .hyp-table  { min-width: 420px; }
     }
   </style>
 </head>
