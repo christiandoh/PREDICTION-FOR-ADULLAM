@@ -1,5 +1,7 @@
 # 📊 ADULLAM — Projection Financière 2025–2029
 
+![ADULLAM Dashboard Preview](./photo.jpeg)
+
 > Prédiction du chiffre d'affaires et des bénéfices sur **4 partenaires B2B** et **200 marchands directs**, sur **5 ans**, dans **8 pays** d'Afrique de l'Ouest et Centrale.
 
 ---
